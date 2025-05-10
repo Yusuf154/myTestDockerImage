@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  app:
+    image: yusufjava8/my-test-docker-image
+    container_name: my-test-docker-container
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
